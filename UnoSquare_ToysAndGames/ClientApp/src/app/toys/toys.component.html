@@ -1,0 +1,33 @@
+<h1 id="tableLabel">Toys And Games</h1>
+
+<p *ngIf="!products"><em>Loading...</em></p>
+
+
+<button class="btn btn-primary btn-lg active" [routerLink]="['/product']">Add Product+</button>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="products">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Price</th>
+      <th>Company</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.ageRestriction }}</td>
+      <td>{{ product.price | currency }}</td>
+      <td>{{ product.company }}</td>
+      <td> <button class="btn btn-primary btn-lg active" (click)="UpdateProduct(product.id)">Update</button></td>
+      <td><button class="btn btn-danger btn-lg active" (click)="deleteProduct(product)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

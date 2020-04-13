@@ -1,0 +1,90 @@
+  <form [formGroup]="myForm">
+    <div class="divTable">
+      <h1 id="tableLabel">Toys And Games</h1>
+      <div class="row">
+        <div class="column">Name</div>
+        <div class="column"><input type="text" class="form-control" id="Name" formControlName="name" [(ngModel)]="Product.name" maxlength="50"></div>
+      </div>
+
+      <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="row">
+        <div class="column"></div>
+        <div class="column alert alert-danger">
+          <div *ngIf="f.name.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="f.name.errors.maxlength">
+            Name must be 50 or less characters long.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">Price</div>
+        <div class="column"><input type="number" class="form-control" id="Pricecontrol" [(ngModel)]="Product.price" formControlName="price" placeholder="1 - 1000"></div>
+      </div>
+      <div *ngIf="f.price.invalid && (f.price.dirty || f.price.touched)" class="row">
+        <div class="column"></div>
+        <div class="column  alert alert-danger">
+          <div *ngIf="f.price.errors.required">
+            Price is required.
+          </div>
+          <div *ngIf="f.price.errors.max">
+            Price must be less than 1000.
+          </div>
+          <div *ngIf="f.price.errors.min">
+            Price must be more than 1.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">Company</div>
+        <div class="column"><input type="text" class="form-control" formControlName="company" [(ngModel)]="Product.company" maxlength="50"></div>
+      </div>
+      <div *ngIf="f.company.invalid && (f.company.dirty || f.company.touched)" class="row">
+        <div class="column"></div>
+        <div class="column  alert alert-danger">
+          <div *ngIf="f.company.errors.maxlength">
+            Company must be 50 or less characters long.
+          </div>
+          <div *ngIf="f.company.errors.required">
+            Company is Required.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">Maximum Age</div>
+        <div class="column"><input type="number" class="form-control" formControlName="agerestriction" [(ngModel)]="Product.ageRestriction"></div>
+      </div>
+      <div *ngIf="f.agerestriction.invalid && (f.agerestriction.dirty || f.agerestriction.touched)" class="row">
+        <div class="column"></div>
+        <div class="column  alert alert-danger">
+          <div *ngIf="f.agerestriction.errors.max">
+            Age must be less than 100.
+          </div>
+          <div *ngIf="f.agerestriction.errors.min">
+            Age must be 0 or more.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">Description</div>
+        <div class="column"><input type="text" class="form-control" formControlName="description" [(ngModel)]="Product.description" maxlength="100"></div>
+      </div>
+
+      <div class="row">
+        <div class="column"><button class="btn btn-primary btn-lg active" (click)="saveProduct()" [disabled]="myForm.invalid">Save</button></div>
+        <div class="column"><button class="btn btn-secondary btn-lg active" (click)="cancel()">Cancel</button></div>
+      </div>
+
+      <div class="row" *ngIf="showMsg">
+        <div class="column"></div>
+        <div class="column  alert alert-success"><strong>Saved Succesfull!</strong></div>
+      </div>
+    </div>
+  </form>
+ 
+
+
